@@ -2,26 +2,34 @@ import { ArrowDropDown, Notifications, NotificationsActive, Search } from '@mate
 import React, { useState } from 'react'
 import "./navbar.scss"
 import image from "./LOGO.png"
+import { Link } from "react-router-dom"
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false)
 
     window.onscroll = () => {
-     let yOffset = window.pageYOffset
+        let yOffset = window.pageYOffset
         // eslint-disable-next-line no-restricted-globals
-        setIsScrolled( yOffset === 0 ? false : true) ;
-        return () => (window.onscroll = null) ;
-    } ;
-     
+        setIsScrolled(yOffset === 0 ? false : true);
+        return () => (window.onscroll = null);
+    };
+
     return (
-        <div className= { isScrolled ? "navbar scrolled" : "navbar"}>
+        <div className={isScrolled ? "navbar scrolled" : "navbar"}>
             <div className='container'>
                 <div className='left'>
                     <img src={image} alt=""
                     />
+                    <Link to="/" className='link'>
                     <span> Homepage </span>
-                    <span> Series </span>
-                    <span> Movies </span>
+                    </Link>
+                
+                    <Link to="/series" className='link'>
+                        <span> Series </span>
+                    </Link>
+                    <Link to="/movies"  className='link'>
+                        <span> Movies </span>
+                    </Link>
                     <span> New Popular </span>
                     <span> My List </span>
                 </div>
@@ -39,9 +47,7 @@ const Navbar = () => {
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
     )
 }
